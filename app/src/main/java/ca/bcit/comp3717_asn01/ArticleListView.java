@@ -1,16 +1,17 @@
 package ca.bcit.comp3717_asn01;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ListActivity;
+import androidx.appcompat.app.ActionBar;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
@@ -34,9 +35,14 @@ public class ArticleListView extends AppCompatActivity {
         this.query = getIntent().getStringExtra("prompt");
         this.from = LocalDate.now().minusWeeks(1).toString();
         setContentView(R.layout.activity_article_list_view);
-
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         articleList = new ArrayList<Article>();
         lv = findViewById(R.id.articleList);
+        int[] colors = {0, 0xFF4682B4, 0}; // red for the example
+        lv.setDivider(new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors));
+        lv.setDividerHeight(1);
         serviceURL = "https://newsapi.org/v2/everything" +
                 "?q=" + query +
                 "&from=" + from +
@@ -53,14 +59,21 @@ public class ArticleListView extends AppCompatActivity {
                 intent.putExtra("urlToImage", articleList.get(i).getUrlToImage());
                 intent.putExtra("publishedAt", articleList.get(i).getPublishedAt());
                 intent.putExtra("content", articleList.get(i).getContent());
-                intent.putExtra("sourceName", articleList.get(i).getSource().getName());
+                intent.putExtra("sourceName", "");
                 startActivity(intent);
             }
         });
 
         new GetContacts().execute();
     }
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
 
+        if (id==android.R.id.home) {
+            finish();
+        }
+        return false;
+    }
     /**
      * Async task class to get json by making HTTP call
      */

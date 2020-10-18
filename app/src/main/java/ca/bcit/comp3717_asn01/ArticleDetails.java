@@ -1,8 +1,10 @@
 package ca.bcit.comp3717_asn01;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,7 +14,9 @@ public class ArticleDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_details);
-
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         String title = getIntent().getStringExtra("title");
         String author = getIntent().getStringExtra("author");
         String description = getIntent().getStringExtra("description");
@@ -47,5 +51,13 @@ public class ArticleDetails extends AppCompatActivity {
 
         TextView tvSourceName = findViewById(R.id.sourceName);
         tvSourceName.setText(String.format("Source Name: %s", sourceName));
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id==android.R.id.home) {
+            finish();
+        }
+        return false;
     }
 }
