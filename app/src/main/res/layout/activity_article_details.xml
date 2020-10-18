@@ -13,6 +13,11 @@
         android:layout_height="190dp" />
 
     <TextView
+        android:id="@+id/sourceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
         android:id="@+id/articleTitle"
         android:textSize="24sp"
         android:textStyle="bold"

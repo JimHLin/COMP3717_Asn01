@@ -20,6 +20,7 @@ public class ArticleDetails extends AppCompatActivity {
         String urlToImage = getIntent().getStringExtra("urlToImage");
         String publishedAt = getIntent().getStringExtra("publishedAt");
         String content = getIntent().getStringExtra("content");
+        String sourceName = getIntent().getStringExtra("sourceName");
 
         ImageView photo = findViewById(R.id.photo);
         if (urlToImage != null) {
@@ -36,12 +37,15 @@ public class ArticleDetails extends AppCompatActivity {
         tvDescription.setText(String.format("Description: %s", description));
 
         TextView tvUrl = findViewById(R.id.url);
-        tvUrl.setText(String.format("Url: %s", url));
+        tvUrl.setText(String.format("URL: %s", url));
 
         TextView tvPublishedAt = findViewById(R.id.publishedAt);
-        tvPublishedAt.setText(String.format("PublishedAt: %s", publishedAt));
+        tvPublishedAt.setText(String.format("Published at: %s", publishedAt));
 
         TextView tvContent = findViewById(R.id.content);
         tvContent.setText(String.format("Content: %s", content));
+
+        TextView tvSourceName = findViewById(R.id.sourceName);
+        tvSourceName.setText(String.format("Source Name: %s", sourceName));
     }
 }
