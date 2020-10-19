@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,8 +23,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         EditText prompt = findViewById(R.id.firstPageQuery);
         String promptString = prompt.getText().toString();
-        Intent i = new Intent(this, ArticleListView.class);
-        i.putExtra("prompt", promptString);
-        startActivity(i);
+        if (promptString.trim().isEmpty()) {
+            Toast.makeText(this, "Empty query. Please enter a prompt.", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent i = new Intent(this, ArticleListView.class);
+            i.putExtra("prompt", promptString);
+            startActivity(i);
+        }
     }
 }

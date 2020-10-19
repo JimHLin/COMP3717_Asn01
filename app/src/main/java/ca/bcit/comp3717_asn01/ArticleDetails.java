@@ -32,25 +32,39 @@ public class ArticleDetails extends AppCompatActivity {
         }
 
         TextView tvTitle = findViewById(R.id.articleTitle);
-        tvTitle.setText(String.format("Title: %s", title));
+        if (title != null) {
+            tvTitle.setText(String.format("Title: %s", title));
+        }
 
         TextView tvAuthor = findViewById(R.id.author);
-        tvAuthor.setText(String.format("Author: %s", author));
+        if (author != null) {
+            tvAuthor.setText(String.format("Author: %s", author));
+        }
 
         TextView tvDescription = findViewById(R.id.description);
-        tvDescription.setText(String.format("Description: %s", description));
+        if (description != null) {
+            tvDescription.setText(String.format("Description: %s", description));
+        }
 
         TextView tvUrl = findViewById(R.id.url);
-        tvUrl.setText(String.format("URL: %s", url));
+        if (url != null) {
+            tvUrl.setText(String.format("URL: %s", url));
+        }
 
         TextView tvPublishedAt = findViewById(R.id.publishedAt);
-        tvPublishedAt.setText(String.format("Published at: %s", publishedAt));
+        if (publishedAt != null) {
+            tvPublishedAt.setText(String.format("Published at: %s", publishedAt));
+        }
 
         TextView tvContent = findViewById(R.id.content);
-        tvContent.setText(String.format("Content: %s", content));
+        if (content != null) {
+            tvContent.setText(String.format("Content: %s", content));
+        }
 
         TextView tvSourceName = findViewById(R.id.sourceName);
-        tvSourceName.setText(String.format("Source Name: %s", sourceName));
+        if (sourceName != null) {
+            tvSourceName.setText(String.format("Source Name: %s", sourceName));
+        }
     }
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();

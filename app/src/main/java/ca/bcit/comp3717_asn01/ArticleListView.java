@@ -59,7 +59,7 @@ public class ArticleListView extends AppCompatActivity {
                 intent.putExtra("urlToImage", articleList.get(i).getUrlToImage());
                 intent.putExtra("publishedAt", articleList.get(i).getPublishedAt());
                 intent.putExtra("content", articleList.get(i).getContent());
-                intent.putExtra("sourceName", "");
+                intent.putExtra("sourceName", articleList.get(i).getSource().getName());
                 startActivity(intent);
             }
         });
